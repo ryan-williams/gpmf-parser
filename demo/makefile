@@ -1,5 +1,5 @@
 gpmfdemo : GPMF_demo.o GPMF_parser.o GPMF_mp4reader.o GPMF_print.o
-		gcc -o gpmfdemo GPMF_demo.o GPMF_parser.o GPMF_mp4reader.o GPMF_print.o -lasan
+		gcc -o gpmfdemo GPMF_demo.o GPMF_parser.o GPMF_mp4reader.o GPMF_print.o -fsanitize=address
 
 GPMF_demo.o : GPMF_demo.c ../GPMF_parser.h
 		gcc -g -c GPMF_demo.c
