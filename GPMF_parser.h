@@ -1,13 +1,13 @@
 /*! @file GPMF_parser.h
- * 
+ *
  *  @brief GPMF Parser library include
- * 
+ *
  *  @version 1.5.0
- * 
+ *
  *  (C) Copyright 2017 GoPro Inc (http://gopro.com/).
  *
  *  Licensed under either:
- *  - Apache License, Version 2.0, http://www.apache.org/licenses/LICENSE-2.0  
+ *  - Apache License, Version 2.0, http://www.apache.org/licenses/LICENSE-2.0
  *  - MIT license, http://opensource.org/licenses/MIT
  *  at your option.
  *
@@ -16,7 +16,7 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
- * 
+ *
  */
 
 #ifndef _GPMF_PARSER_H
@@ -76,7 +76,7 @@ uint32_t GPMF_StructSize(GPMF_stream *gs);														//return the current sam
 uint32_t GPMF_Repeat(GPMF_stream *gs);															//return the current repeat or the number of samples of this structure
 uint32_t GPMF_PayloadSampleCount(GPMF_stream *gs);														//return the current number of samples of this structure, supporting multisample entries.
 uint32_t GPMF_ElementsInStruct(GPMF_stream *gs);												//return the current number elements within the structure (e.g. 3-axis gyro)
-uint32_t GPMF_RawDataSize(GPMF_stream *gs);														//return the data size for the current GPMF KLV 
+uint32_t GPMF_RawDataSize(GPMF_stream *gs);														//return the data size for the current GPMF KLV
 void *   GPMF_RawData(GPMF_stream *gs);															//return a pointer the KLV data (which is Bigendian if the type is known.)
 
 // Get information about where the GPMF KLV is nested
@@ -87,10 +87,10 @@ GPMF_ERR GPMF_DeviceName(GPMF_stream *gs, char *devicename_buf, uint32_t devicen
 // Utilities for data types
 uint32_t GPMF_SizeofType(GPMF_SampleType type);													// GPMF equivalent to sizeof(type)
 uint32_t GPMF_ExpandComplexTYPE(char *src, uint32_t srcsize, char *dst, uint32_t *dstsize);		// GPMF using TYPE for cmple structure.  { float val[16],uin32_t flags; } has type "f[8]L", this tools expands to the simpler format "ffffffffL"
-uint32_t GPMF_SizeOfComplexTYPE(char *typearray, uint32_t typestringlength);					// GPMF equivalent to sizeof(typedef) for complex types. 
+uint32_t GPMF_SizeOfComplexTYPE(char *typearray, uint32_t typestringlength);					// GPMF equivalent to sizeof(typedef) for complex types.
 GPMF_ERR GPMF_Reserved(uint32_t key);															// Test for a reverse GPMF Key, returns GPMF_OK is not reversed.
 
-//Tools for extracting sensor data 
+//Tools for extracting sensor data
 uint32_t GPMF_FormattedDataSize(GPMF_stream *gs);												//return the decompressed data size for the current GPMF KLV
 uint32_t GPMF_ScaledDataSize(GPMF_stream *gs, GPMF_SampleType type);												//return the decompressed data size for the current GPMF KLV
 GPMF_ERR GPMF_FormattedData(GPMF_stream *gs, void *buffer, uint32_t buffersize, uint32_t sample_offset, uint32_t read_samples);  // extract 'n' samples into local endian memory format.
@@ -102,7 +102,7 @@ typedef struct GPMF_codebook
 {
 	int16_t value;			//value to store
 	uint8_t offset;			//0 to 128+ bytes to skip before store (leading zeros)
-	uint8_t bits_used;		//1 to 16,32 (if escape code > 16 then read from bit-steam), 
+	uint8_t bits_used;		//1 to 16,32 (if escape code > 16 then read from bit-steam),
 	int8_t bytes_stored;	//bytes stored in value: 0, 1 or 2
 	int8_t command;		//0 - OKAY,  -1 valid code, 1 - end
 } GPMF_codebook;
